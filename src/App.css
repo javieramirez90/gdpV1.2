@@ -19,7 +19,14 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #68BB54;
+}
+
+.pLeMiddle {
+  width: 40%;
+  height: auto;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 @keyframes App-logo-spin {
