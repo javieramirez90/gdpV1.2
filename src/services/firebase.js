@@ -21,6 +21,7 @@ import 'firebase/firestore';
   firestore.settings(settings);
   const db = firestore;
   const potencialesRef = db.collection('potenciales')
+  // db.collection("users").set(data);
 
   export const redirectLogin = (facebook) => {
     const provider = facebook ? new firebase.auth.FacebookAuthProvider() : new firebase.auth.GoogleAuthProvider()
@@ -30,12 +31,15 @@ import 'firebase/firestore';
 export const sendForm = (formData, user) => {
   const form = { formData, user:user.uid }
   return potencialesRef
+  
     .doc(user.uid)
     .set(form)
-    .then(r => true)
+    .then(r => {
+      db.collection("users").set(formData)
+    })
 }
 
-export const checkIfSubmitedBefor = (user) => {
+export const checkIfSubmitedBefore = (user) => {
   return potencialesRef
     .doc(user.uid)
     .get()
